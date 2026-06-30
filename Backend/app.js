@@ -41,7 +41,7 @@ app.use("/api/stripe", stripeRoutes); // Mount before express.json() so webhook 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Allow requests from Vite frontend dev server or production frontend
+    origin: [process.env.FRONTEND_URL, "http://localhost:5173"].filter(Boolean), // Allow requests from both dev and prod
     credentials: true // Allow cookie sharing
 }));
 
